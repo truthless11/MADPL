@@ -1,3 +1,12 @@
+# Data / Saved model / Tensorboard
+multiwoz/
+model*/
+runs/
+
+# Log
+log/
+result*.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
