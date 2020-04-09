@@ -1,6 +1,6 @@
 # MADPL
 
-Codes for the paper "Multi-Agent Task-Oriented Dialog Policy Learning with Role-Aware Reward Decomposition"
+Codes for the paper "Multi-Agent Task-Oriented Dialog Policy Learning with Role-Aware Reward Decomposition", and you can find our paper at [arxiv](https://arxiv.org/abs/2004.03809)
 
 Cite this paper :
 
