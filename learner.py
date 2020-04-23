@@ -371,7 +371,7 @@ class Learner():
 
     def load(self, filename):
         
-        directory, epoch = filename.split('/')
+        directory, epoch = filename.rsplit('/', 1)
         
         policy_usr_mdl = directory + '/usr/' + epoch + '_pol.mdl'
         if os.path.exists(policy_usr_mdl):
@@ -396,13 +396,13 @@ class Learner():
     
     def sample(self, batchsz):
         """
-        Given batchsz number of task, the batchsz will be splited equally to each processes
+        Given batchsz number of task, the batchsz will be split equally to each processes
         and when processes return, it merge all data and return
         :param batchsz:
         :return: batch
         """
 
-        # batchsz will be splitted into each process,
+        # batchsz will be split into each process,
         # final batchsz maybe larger than batchsz parameters
         process_batchsz = np.ceil(batchsz / self.process_num).astype(np.int32)
         # buffer to save all data

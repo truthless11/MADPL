@@ -26,7 +26,7 @@ time_re = re.compile(r'^(([01]\d|2[0-3]):([0-5]\d)|24:00)$')
 NUL_VALUE = ["", "dont care", 'not mentioned', "don't care", "dontcare", "do n't care"]
 
 class MultiWozEvaluator():
-    def __init__(self):
+    def __init__(self, data_dir):
         self.sys_da_array = []
         self.usr_da_array = []
         self.goal = {}
@@ -37,7 +37,7 @@ class MultiWozEvaluator():
         cfg = MultiWozConfig()
         self.belief_domains = cfg.belief_domains
         self.mapping = cfg.mapping
-        db = DBQuery('multiwoz', cfg)
+        db = DBQuery(data_dir, cfg)
         self.dbs = db.dbs
 
     def _init_dict(self):

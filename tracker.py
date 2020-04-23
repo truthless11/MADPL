@@ -15,7 +15,7 @@ class StateTracker(object):
         self.cfg = config
         self.db = DBQuery(data_dir, config)
         self.topic = ''
-        self.evaluator = MultiWozEvaluator()
+        self.evaluator = MultiWozEvaluator(data_dir)
         self.lock_evalutor = False
     
     def set_rollout(self, rollout):

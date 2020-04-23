@@ -139,7 +139,7 @@ class Policy(object):
                 raise Exception('Unknown character')
             self.multi_entropy_loss = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
         else:
-            self.evaluator = MultiWozEvaluator()
+            self.evaluator = MultiWozEvaluator(args.data_dir)
 
         self.save_dir = args.save_dir + '/' + character if pre else args.save_dir
         self.save_per_epoch = args.save_per_epoch

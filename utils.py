@@ -15,7 +15,7 @@ def get_parser():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--log_dir', type=str, default='log', help='Logging directory')
-    parser.add_argument('--data_dir', type=str, default='multiwoz', help='Data directory')
+    parser.add_argument('--data_dir', type=str, default='data', help='Data directory')
     parser.add_argument('--save_dir', type=str, default='model_multi', help='Directory to store model')
     parser.add_argument('--load', type=str, default='', help='File name to load trained model')
     parser.add_argument('--pretrain', type=bool, default=False, help='Set to pretrain')

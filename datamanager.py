@@ -108,19 +108,19 @@ class DataManager():
             if not os.path.exists(file_dir):
                 from dbquery import DBQuery
                 db = DBQuery(data_dir, cfg)
-                self.create_dataset_sys(part, file_dir, cfg, db)
+                self.create_dataset_sys(part, file_dir, data_dir, cfg, db)
                 
             file_dir = self.data_dir_new + '/' + part + '_usr.pt'
             if not os.path.exists(file_dir):
                 from dbquery import DBQuery
                 db = DBQuery(data_dir, cfg)
-                self.create_dataset_usr(part, file_dir, cfg, db) 
+                self.create_dataset_usr(part, file_dir, data_dir, cfg, db)
                 
             file_dir = self.data_dir_new + '/' + part + '_glo.pt'
             if not os.path.exists(file_dir):
                 from dbquery import DBQuery
                 db = DBQuery(data_dir, cfg)
-                self.create_dataset_global(part, file_dir, cfg, db)
+                self.create_dataset_global(part, file_dir, data_dir, cfg, db)
             
     def _build_data(self, data_dir, data_dir_new, cfg, db):
         data_filename = data_dir + '/' + cfg.data_file
@@ -267,11 +267,11 @@ class DataManager():
                 f.write(self.goal[part])
                 self.goal[part] = json.loads(self.goal[part])
         
-    def create_dataset_sys(self, part, file_dir, cfg, db):
+    def create_dataset_sys(self, part, file_dir, data_dir, cfg, db):
         datas = self.data[part]
         goals = self.goal[part]
         s, a, r, next_s, t = [], [], [], [], []
-        evaluator = MultiWozEvaluator()
+        evaluator = MultiWozEvaluator(data_dir)
         for idx, turn_data in enumerate(datas):
             if turn_data['others']['turn'] % 2 == 0:
                 if turn_data['others']['turn'] == 0:
@@ -314,11 +314,11 @@ class DataManager():
                 
         torch.save((s, a, r, next_s, t), file_dir)
         
-    def create_dataset_usr(self, part, file_dir, cfg, db):
+    def create_dataset_usr(self, part, file_dir, data_dir, cfg, db):
         datas = self.data[part]
         goals = self.goal[part]
         s, a, r, next_s, t = [], [], [], [], []
-        evaluator = MultiWozEvaluator()
+        evaluator = MultiWozEvaluator(data_dir)
         current_goal = None
         for idx, turn_data in enumerate(datas):
             if turn_data['others']['turn'] % 2 == 1:
@@ -369,11 +369,11 @@ class DataManager():
                 
         torch.save((s, a, r, next_s, t), file_dir)
         
-    def create_dataset_global(self, part, file_dir, cfg, db):
+    def create_dataset_global(self, part, file_dir, data_dir, cfg, db):
         datas = self.data[part]
         goals = self.goal[part]
         s_usr, s_sys, r_g, next_s_usr, next_s_sys, t = [], [], [], [], [], []
-        evaluator = MultiWozEvaluator()
+        evaluator = MultiWozEvaluator(data_dir)
         for idx, turn_data in enumerate(datas):
             if turn_data['others']['turn'] % 2 == 0:
                 if turn_data['others']['turn'] == 0:
