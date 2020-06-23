@@ -9,6 +9,7 @@ Cite this paper :
   title={Multi-Agent Task-Oriented Dialog Policy Learning with Role-Aware Reward Decomposition},
   author={Takanobu, Ryuichi and Liang, Runze and Huang, Minlie},
   booktitle={ACL},
+  pages={625--638},
   year={2020}
 }
 ```
